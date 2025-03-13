@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'miRNA',
     'MRI',
     'EEG',
+    'Alerta',
+    'Resultado',
 ]
 
 MIDDLEWARE = [
