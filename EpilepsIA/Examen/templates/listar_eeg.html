@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Exámenes EEG</title>
+</head>
+<body>
+    <h1>Listado de Exámenes EEG</h1>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Resultado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for eeg in eegs %}
+            <tr>
+                <td>{{ eeg.id }}</td>
+                <td>{{ eeg.fecha }}</td>
+                <td>{{ eeg.estado }}</td>
+                <td>{{ eeg.resultado }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No hay exámenes EEG disponibles.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{% url 'crear_eeg' %}">Crear nuevo Examen EEG</a>
+</body>
+</html>

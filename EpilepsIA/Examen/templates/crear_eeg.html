@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Examen EEG</title>
+</head>
+<body>
+    <h1>Crear Examen EEG</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+
+        <label for="estado">Estado:</label><br>
+        <input type="text" name="estado" id="estado" required><br><br>
+
+        <label for="resultado">Resultado (JSON):</label><br>
+        <textarea name="resultado" id="resultado" rows="4" cols="50"></textarea><br><br>
+
+        <button type="submit">Crear Examen EEG</button>
+    </form>
+    <br>
+    <a href="{% url 'listar_eeg' %}">Ver lista de Exámenes EEG</a>
+</body>
+</html>
