@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Alerta, alertaResultado, alertaDiagnostico
+from .models import Alerta, AlertaResultado, AlertaDiagnostico
 import json
 
 # View for creating an Alerta
