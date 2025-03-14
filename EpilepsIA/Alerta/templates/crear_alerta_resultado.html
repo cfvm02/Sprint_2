@@ -1,0 +1,31 @@
+<!-- alertas/templates/alertas/crear_alerta_resultado.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Alerta Resultado</title>
+</head>
+<body>
+
+<h2>Crear un nuevo Alerta Resultado</h2>
+
+<!-- Formulario para crear un nuevo AlertaResultado -->
+<form method="POST">
+    {% csrf_token %}  <!-- Token de seguridad CSRF -->
+
+    <label for="alerta">Alerta ID:</label>
+    <input type="text" id="alerta" name="alerta" required><br><br>
+
+    <label for="resultado">Resultado:</label>
+    <textarea id="resultado" name="resultado" rows="4" required></textarea><br><br>
+
+    <button type="submit">Crear Alerta Resultado</button>
+</form>
+
+<!-- Enlace para volver a la lista de alertas -->
+<a href="{% url 'listar_alertaResultado' %}">Volver a la lista de resultados</a>
+
+</body>
+</html>

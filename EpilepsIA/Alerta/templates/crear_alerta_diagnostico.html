@@ -1,0 +1,14 @@
+<!-- alertas/templates/alertas/crear_alerta_diagnostico.html -->
+
+<h2>Crear un nuevo Alerta Diagnóstico</h2>
+<form method="POST">
+    {% csrf_token %}
+    
+    <label for="alerta">Alerta:</label>
+    <input type="text" id="alerta" name="alerta" required><br><br>
+
+    <label for="diagnostico">Diagnóstico:</label>
+    <textarea id="diagnostico" name="diagnostico" rows="4" required></textarea><br><br>
+
+    <button type="submit">Crear Alerta Diagnóstico</button>
+</form>

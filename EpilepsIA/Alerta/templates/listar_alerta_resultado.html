@@ -1,0 +1,30 @@
+<!-- alertas/templates/alertas/listar_alerta_resultado.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Alerta Resultados</title>
+</head>
+<body>
+
+<h2>Lista de Alerta Resultados</h2>
+
+<!-- Mostrar la lista de AlertaResultado -->
+<ul>
+    {% for alerta_resultado in alertas_resultado %}
+        <li>
+            <strong>Alerta ID:</strong> {{ alerta_resultado.id }} <br>
+            <strong>Resultado:</strong> {{ alerta_resultado.resultado }}
+        </li>
+    {% empty %}
+        <li>No hay resultados disponibles.</li>
+    {% endfor %}
+</ul>
+
+<!-- Enlace para crear un nuevo AlertaResultado -->
+<a href="{% url 'crear_alertaResultado' %}">Crear nuevo Alerta Resultado</a>
+
+</body>
+</html>

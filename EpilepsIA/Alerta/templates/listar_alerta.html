@@ -1,0 +1,31 @@
+<!-- alertas/templates/alertas/listar_alerta.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Alertas</title>
+</head>
+<body>
+
+<h2>Lista de Alertas</h2>
+
+<!-- Display the list of alertas -->
+<ul>
+    {% for alerta in alertas %}
+        <li>
+            <strong>ID:</strong> {{ alerta.id }} <br>
+            <strong>Fecha:</strong> {{ alerta.fecha }} <br>
+            <strong>Descripción:</strong> {{ alerta.descripcion }}
+        </li>
+    {% empty %}
+        <li>No hay alertas disponibles.</li>
+    {% endfor %}
+</ul>
+
+<!-- Link to create a new Alerta -->
+<a href="{% url 'crear_alerta' %}">Crear nueva alerta</a>
+
+</body>
+</html>

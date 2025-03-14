@@ -1,0 +1,10 @@
+<!-- alertas/templates/alertas/listar_alerta_diagnostico.html -->
+
+<h2>Lista de Alerta Diagnóstico</h2>
+<ul>
+    {% for alerta in alertas_diagnostico %}
+        <li>{{ alerta.id }} - {{ alerta.diagnostico }}</li>
+    {% empty %}
+        <li>No hay alertas diagnóstico disponibles.</li>
+    {% endfor %}
+</ul>
