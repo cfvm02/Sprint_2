@@ -1,25 +1,18 @@
-"""
-URL configuration for EpilepsIA project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('Examen.urls')),
-    path('Alerta/', include('Alerta.urls')),
-    path('Resultado/', include('Resultado.urls')), 
+    path('evento/', include('Evento.urls')),
+    path('medico/', include('Medico.urls')),
+    path('paciente/', include('Paciente.urls')),
+    path('solicitud/', include('Solicitud.urls')),
+    path('examen/', include('Examen.urls')),
+    path('resultado/', include('Resultado.urls')),
+    path('alerta/', include('Alerta.urls')),
+    path('alerta-diagnostico/', include('AlertaDiagnostico.urls')),
+    path('alerta-resultado/', include('AlertaResultado.urls')),
+    path('mirna/', include('miRNA.urls')),
+    path('mri/', include('MRI.urls')),
+    path('eeg/', include('EEG.urls')),
 ]

@@ -13,18 +13,3 @@ class Examen(models.Model):
     
     def __str__(self):
         return self.id
-
-class miRNA(Examen):
-    resultado_miRNA = models.JSONField(null=True, blank=True)
-    def __str__(self):
-        return self.id
-    
-class MRI(Examen):
-    resultado_MRI = models.JSONField(null=True, blank=True)
-    def __str__(self):
-        return self.id
-    
-class EEG(Examen):
-    resultado_eeg = models.JSONField(null=True, blank=True)
-    def __str__(self):
-        return self.id
