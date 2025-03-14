@@ -8,6 +8,6 @@ urlpatterns = [
     #path('Examen/post/miRNA/', ),
     #path('Examen/get/MRI/', ),
     #path('Examen/post/MRI/', ),
-    path('Examen/get/EEG', listar_eeg, name='listar_eeg'),
-    path('Examen/post/EEG', crear_eeg, name='crear_eeg'),
+    #path('Examen/get/EEG', listar_eeg, name='listar_eeg'),
+    #path('Examen/post/EEG', crear_eeg, name='crear_eeg'),
 ]

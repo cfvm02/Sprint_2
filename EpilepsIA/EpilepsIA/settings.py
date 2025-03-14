@@ -38,11 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Examen',
-    'miRNA',
-    'MRI',
-    'EEG',
     'Alerta',
+    'Evento',
+    'Medico',
+    'Paciente',
     'Resultado',
+    'Solicitud',
 ]
 
 MIDDLEWARE = [
