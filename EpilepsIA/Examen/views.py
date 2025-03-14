@@ -1,43 +1,49 @@
-from django.shortcuts import render, redirect
-from .models import EEG
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 import json
+from .models import Examen
 
-def crear_eeg(request):
-    """
-    Vista para crear un examen EEG.
-    Si se recibe una petición POST, se extraen los datos del formulario
-    y se crea la instancia de EEG. En caso de GET, se muestra el formulario.
-    """
-    if request.method == "POST":
-        # Extraer datos enviados desde el formulario
-        id_examen = request.POST.get('id')
-        estado = request.POST.get('estado')
-        resultado_str = request.POST.get('resultado', None)
-
-        # Si el campo resultado se envía como cadena JSON, se intenta decodificar
-        resultado = None
-        if resultado_str:
-            try:
-                resultado = json.loads(resultado_str)
-            except json.JSONDecodeError:
-                # Si falla la decodificación, se puede manejar el error o dejarlo en None
-                resultado = None
-
-        # Crear la instancia de EEG
-        EEG.objects.create(id=id_examen, estado=estado, resultado=resultado)
-
-        # Redireccionar a la vista de listado (asegúrate de que el nombre 'listar_eeg' esté configurado en tus urls)
-        return redirect('listar_eeg')
+@csrf_exempt
+def examenes_view(request):
+    if request.method == "GET":
+        examenes = Examen.objects.all()
+        examenes_list = [
+            {
+                "id": e.id,
+                "fecha": e.fecha,
+                "solicitud": e.solicitud.id if e.solicitud else None,
+                "paciente": e.paciente.id if e.paciente else None,
+            }
+            for e in examenes
+        ]
+        return JsonResponse(examenes_list, safe=False, status=200)
+    elif request.method == "POST":
+        try:
+            data = json.loads(request.body)
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "JSON inválido"}, status=400)
+        # Obtener la Solicitud y el Paciente asociados
+        from Solicitud.models import Solicitud
+        from Paciente.models import Paciente
+        try:
+            solicitud_obj = Solicitud.objects.get(id=data.get("solicitud"))
+        except Solicitud.DoesNotExist:
+            return JsonResponse({"error": "Solicitud no encontrada"}, status=404)
+        try:
+            paciente_obj = Paciente.objects.get(id=data.get("paciente"))
+        except Paciente.DoesNotExist:
+            return JsonResponse({"error": "Paciente no encontrado"}, status=404)
+        examen = Examen.objects.create(
+            id=data.get("id"),
+            fecha=data.get("fecha"),
+            solicitud=solicitud_obj,
+            paciente=paciente_obj
+        )
+        return JsonResponse({
+            "id": examen.id,
+            "fecha": examen.fecha,
+            "solicitud": examen.solicitud.id,
+            "paciente": examen.paciente.id,
+        }, status=201)
     else:
-        # Renderizar el formulario para crear un examen EEG
-        return render(request, 'crear_eeg.html')
-
-
-def listar_eeg(request):
-    """
-    Vista para listar todos los exámenes EEG existentes.
-    Recupera todas las instancias de EEG y las envía a la plantilla para su visualización.
-    """
-    eegs = EEG.objects.all()
-    return render(request, 'listar_eeg.html', {'eegs': eegs})
-
+        return JsonResponse({"error": "Método no permitido"}, status=405)

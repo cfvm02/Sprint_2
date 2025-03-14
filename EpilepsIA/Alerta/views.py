@@ -1,48 +1,31 @@
-from django.shortcuts import render, redirect
-from .models import Alerta, AlertaResultado, AlertaDiagnostico
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 import json
+from .models import Alerta
 
-# View for creating an Alerta
-def crear_alerta(request):
-    if request.method == "POST":
-        fecha = request.POST.get('fecha')
-        descripcion = request.POST.get('descripcion')
-        Alerta.objects.create(fecha=fecha, descripcion=descripcion)
-        return redirect('listar_alerta')
+@csrf_exempt
+def alertas_view(request):
+    if request.method == "GET":
+        alertas = Alerta.objects.all()
+        alertas_list = [
+            {"id": a.id, "descripcion": a.descripcion, "fecha": a.fecha}
+            for a in alertas
+        ]
+        return JsonResponse(alertas_list, safe=False, status=200)
+    elif request.method == "POST":
+        try:
+            data = json.loads(request.body)
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "JSON inválido"}, status=400)
+        alerta = Alerta.objects.create(
+            id=data.get("id"),
+            descripcion=data.get("descripcion"),
+            fecha=data.get("fecha")
+        )
+        return JsonResponse({
+            "id": alerta.id,
+            "descripcion": alerta.descripcion,
+            "fecha": alerta.fecha,
+        }, status=201)
     else:
-        return render(request, 'crear_alerta.html')
-
-# View for listing all Alerta objects
-def listar_alerta(request):
-    alertas = Alerta.objects.all()
-    return render(request, 'listar_alerta.html', {'alertas': alertas})
-
-# View for creating AlertaDiagnostico
-def crear_alerta_diagnostico(request):
-    if request.method == "POST":
-        alerta = request.POST.get('alerta')
-        diagnostico = request.POST.get('diagnostico')
-        alertaDiagnostico.objects.create(alerta=alerta, diagnostico=diagnostico)
-        return redirect('listar_alertaDiagnostico')
-    else:
-        return render(request, 'crear_alerta_diagnostico.html')
-
-# View for listing all AlertaDiagnostico objects
-def listar_alerta_diagnostico(request):
-    alertas_diagnostico = alertaDiagnostico.objects.all()
-    return render(request, 'listar_alerta_diagnostico.html', {'alertas_diagnostico': alertas_diagnostico})
-
-# View for creating AlertaResultado
-def crear_alerta_resultado(request):
-    if request.method == "POST":
-        alerta = request.POST.get('alerta')
-        resultado = request.POST.get('resultado')
-        alertaResultado.objects.create(alerta=alerta, resultado=resultado)
-        return redirect('listar_alertaResultado')
-    else:
-        return render(request, 'crear_alerta_resultado.html')
-
-# View for listing all AlertaResultado objects
-def listar_alerta_resultado(request):
-    alertas_resultado = alertaResultado.objects.all()
-    return render(request, 'listar_alerta_resultado.html', {'alertas_resultado': alertas_resultado})
+        return JsonResponse({"error": "Método no permitido"}, status=405)
