@@ -1,0 +1,15 @@
+<!-- templates/resultados/crear_resultado.html -->
+<h2>Crear Nuevo Resultado</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <label for="id">ID:</label>
+    <input type="text" id="id" name="id" required><br><br>
+
+    <label for="respuesta">Respuesta:</label>
+    <textarea id="respuesta" name="respuesta" required></textarea><br><br>
+
+    <button type="submit">Crear Resultado</button>
+</form>
+
+<a href="{% url 'listar_resultado' %}">Volver a la lista de resultados</a>

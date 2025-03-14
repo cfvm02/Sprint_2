@@ -1,0 +1,14 @@
+<!-- templates/resultados/listar_resultado.html -->
+<h2>Lista de Resultados</h2>
+<ul>
+    {% for resultado in resultados %}
+        <li>
+            <strong>ID:</strong> {{ resultado.id }} <br>
+            <strong>Fecha:</strong> {{ resultado.fecha }} <br>
+            <strong>Respuesta:</strong> {{ resultado.respuesta }}
+        </li>
+    {% empty %}
+        <li>No hay resultados disponibles.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'crear_resultado' %}">Crear nuevo Resultado</a>
