@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'new_app',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +123,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(BASE_DIR) + "/jjdc-453414-7962ee87f1a0.json"
+
+# Configuración del bucket de Google Cloud Storage
+GCS_BUCKET_NAME = "examenes-eeg"  # Reemplaza con el nombre real de tu bucket
+GCS_BASE_FOLDER = "uploads/"  # Opcional: carpeta base en el bucket para tus archivos

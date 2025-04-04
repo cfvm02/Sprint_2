@@ -172,3 +172,5 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+main/jjdc-453414-7962ee87f1a0.json
+main/examenes/*
