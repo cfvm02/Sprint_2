@@ -1,0 +1,37 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+  - name: app-service
+    host: app-upstream
+    port: 80
+    protocol: http
+    routes:
+      - name: app-route
+        paths:
+          - /app
+        strip_path: true
+
+upstreams:
+  - name: app-upstream
+    algorithm: round-robin
+    healthchecks:
+      active:
+        http_path: "/health"
+        timeout: 1
+        concurrency: 1
+        healthy:
+          interval: 10
+          successes: 2
+          http_statuses: [200]
+        unhealthy:
+          interval: 10
+          http_failures: 2
+          timeouts: 2
+          tcp_failures: 2
+        type: http
+    targets:
+      - target: app1:8000
+        weight: 100
+      - target: app2:8000
+        weight: 100
