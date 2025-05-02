@@ -4,10 +4,10 @@ from django.db import models
 from Examen.models import Examen
 
 class Resultado(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True, default=uuid.uuid4, editable=False)
     fecha = models.DateTimeField(auto_now_add=True)
     respuesta = models.TextField()
-    examen = models.IntegerField(null=True, blank=True)
+    examen = models.UUIDField(null=True, blank=True)
 
     
     def __str__(self):
