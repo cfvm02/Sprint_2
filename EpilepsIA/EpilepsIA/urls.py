@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
 
+from .views import health_check
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('evento/', include('Evento.urls')),
@@ -15,4 +17,5 @@ urlpatterns = [
     path('mirna/', include('miRNA.urls')),
     path('mri/', include('MRI.urls')),
     path('eeg/', include('EEG.urls')),
+    path('health', health_check, name='health'),
 ]
