@@ -1,12 +1,16 @@
 import uuid
 from django.db import models
 from Solicitud.models import Solicitud
-
+from google.cloud import storage
+from .helpers import gcs
+from EpilepsIA import settings
 class Examen(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    paciente = models.IntegerField(null=True, blank=True)  # ID del paciente como entero
+    paciente_id = models.IntegerField(null=True, blank=True)  # ID del paciente como entero
     fecha = models.DateTimeField(auto_now_add=True)
-    link = models.TextField(null=True, blank=True)         # Link opcional
+    urlAcceso = models.URLField(blank=True)  # puede quedar vacío hasta que se suba el archivo
+    archivo = models.FileField(upload_to='examenes/', null=True, blank=True)
+    # link = models.TextField(null=True, blank=True)  # Link opcional
 
     def __str__(self):
         return str(self.id)
