@@ -1,9 +1,5 @@
 import uuid
 from django.db import models
-from Solicitud.models import Solicitud
-from google.cloud import storage
-from .helpers import gcs
-from EpilepsIA import settings
 class Examen(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     paciente_id = models.IntegerField(null=True, blank=True)  # ID del paciente como entero
