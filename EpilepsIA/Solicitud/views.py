@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 
-from .rabbit import enviar_a_map_requests
+from .rabbit import enviar_a_map_requests, get_channel
 from .models import Solicitud
 from Medico.models import Medico
 
@@ -40,12 +40,12 @@ def solicitudes_view(request):
             examen_id=data.get("examen_id"),
             #medico=medico_obj
         )
-        #enviar_a_map_requests({
-        #"id": id,
-        #"fecha": Solicitud.fecha,
-        #"estado": Solicitud.estado,
-        #"examen": Solicitud.examen.id if Solicitud.examen else None,
-        #})
+        get_channel()
+        enviar_a_map_requests({
+        "id_paciente":"34",
+        "id_examen": Solicitud.examen.id if Solicitud.examen else None,
+        "ubicacion":Solicitud.examen.urlAcceso if Solicitud.examen else None,
+        })
         return JsonResponse({
             "id": solicitud.id,
             "fecha": solicitud.fecha,
