@@ -4,4 +4,4 @@ from .models import Examen
 class ExamenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Examen
-        fields = ['paciente_id','archivo']
+        fields = ['id','paciente_id','archivo']

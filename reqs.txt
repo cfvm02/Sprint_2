@@ -4,3 +4,5 @@ requests
 django-cors-headers
 djangorestframework
 google-cloud-storage
+pika
+pycryptodome

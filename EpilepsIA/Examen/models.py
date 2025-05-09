@@ -1,7 +1,6 @@
 import os
 import uuid
 from django.db import models
-from Solicitud.models import Solicitud
 from google.cloud import storage
 from .helpers import gcs
 from EpilepsIA import settings
