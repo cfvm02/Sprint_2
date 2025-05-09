@@ -7,7 +7,6 @@ from google.cloud import storage
 
 from .helpers import gcs
 from EpilepsIA import settings
-
 class Examen(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     paciente_id = models.IntegerField(null=True, blank=True)  # ID del paciente como entero
@@ -49,3 +48,7 @@ class Examen(models.Model):
             # Actualiza el campo urlAcceso y guarda de nuevo el objeto
             self.urlAcceso = public_url
             super().save(update_fields=["urlAcceso"])
+    # link = models.TextField(null=True, blank=True)  # Link opcional
+
+    def __str__(self):
+        return str(self.id)
