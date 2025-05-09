@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from Examen.models import Examen
 from .models import Solicitud
 
-API_DESTINO = "http://localhost:5000/enviar"  # Reemplaza con tu URL real
+API_DESTINO = "http://34.16.14.54:5000/enviar"  # Reemplaza con tu URL real
 
 @csrf_exempt
 def solicitudes_view(request):
