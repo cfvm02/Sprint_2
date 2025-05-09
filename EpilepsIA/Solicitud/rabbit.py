@@ -3,7 +3,7 @@ import pika
 from .cifr import encrypt_json
 
 def get_channel():
-    rabbit_host = '10.128.0.20'
+    rabbit_host = '34.59.118.140'
     rabbit_user = 'isis2503'
     rabbit_password = '1234'
     connection = pika.BlockingConnection(
@@ -12,11 +12,13 @@ def get_channel():
             credentials=pika.PlainCredentials(rabbit_user, rabbit_password)
         )
     )
+    
     return connection.channel()
 
 def enviar_a_map_requests(mensaje_dict):
     channel = get_channel()
     channel.queue_declare(queue='map_requests', durable=True, exclusive=False, auto_delete=False)
+    #channel.queue_declare(queue='map_requests', durable=True, exclusive=False, auto_delete=False)
     channel.basic_publish(
         exchange='',
         routing_key='map_requests',
