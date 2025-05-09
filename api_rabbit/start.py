@@ -1,6 +1,6 @@
 import pika
 #import Cyph as cy
-from .cifr import encrypt_json
+from cifr import encrypt_json
 
 def get_channel():
     rabbit_host = '34.59.118.140'
