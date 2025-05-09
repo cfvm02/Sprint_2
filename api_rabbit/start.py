@@ -26,3 +26,4 @@ def enviar_a_map_requests(mensaje_dict):
         properties=pika.BasicProperties(delivery_mode=2)
     )
     channel.close()
+    
