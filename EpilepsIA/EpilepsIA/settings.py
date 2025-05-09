@@ -150,7 +150,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:/Users/juanf/jjdc-453414-7962ee87f1a0.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/isis2503/llave_privada_arqui.json"
 
 # Configuración del bucket de Google Cloud Storage
 GCS_BUCKET_NAME = "examenes-eeg"  # Reemplaza con el nombre real de tu bucket
