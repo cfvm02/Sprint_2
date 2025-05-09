@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 
-from EpilepsIA.Solicitud.rabbit import enviar_a_map_requests
+from .rabbit import enviar_a_map_requests
 from .models import Solicitud
 from Medico.models import Medico
 
@@ -15,7 +15,8 @@ def solicitudes_view(request):
                 "id": s.id,
                 "fecha": s.fecha,
                 "estado": s.estado,
-                "medico": s.medico.id if s.medico else None,
+                "examen_id": s.examen.id,
+                #"medico": s.medico.id,
             }
             for s in solicitudes
         ]
