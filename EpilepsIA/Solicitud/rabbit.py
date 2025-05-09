@@ -3,7 +3,7 @@ import json
 from Solicitud import Cyph as cy  # Asegúrate de que cy.encrypt_json funcione correctamente
 
 #Configuración de conexión
-rabbit_host = '10.128.0.20'
+rabbit_host = '34.16.14.54'
 rabbit_user = 'isis2503'
 rabbit_password = '1234'
 
