@@ -6,3 +6,4 @@ djangorestframework
 google-cloud-storage
 pika
 pycryptodome
+social-auth-app-django

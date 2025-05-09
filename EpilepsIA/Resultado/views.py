@@ -35,7 +35,7 @@ def resultados_view(request):
             "id": resultado.id,
             "fecha": resultado.fecha,
             "respuesta": resultado.respuesta,
-            "examen": str(resultado.examen) if resultado.examen else None,
+            #"examen": str(resultado.examen) if resultado.examen else None,
         }, status=201)
 
     else:

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'Paciente',
     'Resultado',
     'Solicitud',
+    'social_django',
 'corsheaders'
 
 ]
@@ -158,3 +159,19 @@ GCS_BASE_FOLDER = "uploads/"  # Opcional: carpeta base en el bucket para tus arc
 
 #FILE_UPLOAD_MAX_MEMORY_SIZE = 500 * 1024 * 1024  # 500 MB (si usas archivos)
 #DATA_UPLOAD_MAX_MEMORY_SIZE = 500 * 1024 * 1024  # 500 MB
+
+LOGIN_URL = "/login/auth0"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "https://dev-qox2s5e2aky6aehb.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F104.154.186.35:4200"
+
+SOCIAL_AUTH_TRAILING_SLASH = False # Remove end slash from routes 
+SOCIAL_AUTH_AUTH0_DOMAIN = 'dev-qox2s5e2aky6aehb.us.auth0.com' 
+SOCIAL_AUTH_AUTH0_KEY = 'u8GVzzzDieeY1kKnhCUnVx0IT0xYXOn8' 
+SOCIAL_AUTH_AUTH0_SECRET = 'rEyASvcOXVtlnwdqH0FsqIPXbIHNyMM1FxYOSjz_UlnZO_-Pp2mn_2ZzHQccIoOE' 
+
+SOCIAL_AUTH_AUTH0_SCOPE = [ 'openid', 
+                           'profile', 
+                           'email', 
+                           'role', ] 
+AUTHENTICATION_BACKENDS = { 'monitoring.auth0backend.Auth0', 
+                           'django.contrib.auth.backends.ModelBackend', }
