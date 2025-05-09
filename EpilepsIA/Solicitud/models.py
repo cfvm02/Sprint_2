@@ -1,7 +1,6 @@
 import uuid
 from django.db import models
 
-from .rabbit import enviar_a_map_requests
 from Examen.models import Examen
 
 class Solicitud(models.Model):
@@ -10,10 +9,6 @@ class Solicitud(models.Model):
     estado = models.CharField(max_length=255)
     examen = models.ForeignKey(Examen, on_delete=models.CASCADE, related_name='examenes',null=True, blank=True)
     
-    
-    
     def __str__(self):
         return str(self.id)
-    
-    
     

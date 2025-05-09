@@ -1,6 +1,6 @@
 import pika
 #import Cyph as cy
-from .cifr import encrypt_json
+from cifr import encrypt_json
 
 def get_channel():
     rabbit_host = '34.59.118.140'
@@ -26,3 +26,4 @@ def enviar_a_map_requests(mensaje_dict):
         properties=pika.BasicProperties(delivery_mode=2)
     )
     channel.close()
+    
