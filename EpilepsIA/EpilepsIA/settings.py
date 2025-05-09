@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -147,3 +148,13 @@ CORS_ALLOW_ALL_ORIGINS = True
 #     'http://192.168.88.1:4200',
 # ]
 
+
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:/Users/juanf/jjdc-453414-7962ee87f1a0.json"
+
+# Configuración del bucket de Google Cloud Storage
+GCS_BUCKET_NAME = "examenes-eeg"  # Reemplaza con el nombre real de tu bucket
+GCS_BASE_FOLDER = "uploads/"  # Opcional: carpeta base en el bucket para tus archivos
+
+#FILE_UPLOAD_MAX_MEMORY_SIZE = 500 * 1024 * 1024  # 500 MB (si usas archivos)
+#DATA_UPLOAD_MAX_MEMORY_SIZE = 500 * 1024 * 1024  # 500 MB
